@@ -42,11 +42,6 @@ const globalData: Person[] = [
   },
 ];
 
-export const nameofFactory =
-  <T,>() =>
-  (name: keyof T) =>
-    name;
-
 function parsePaginationState(params: {
   [k: string]: string;
 }): PaginationState {
@@ -99,16 +94,15 @@ export function App() {
   const { total, people } = useLoaderData() as PageData;
   const { getPaginationState, onPaginationChange } = useQuerystringPagination();
   const columnHelper = createColumnHelper<Person>();
-  const nameof = nameofFactory<Person>();
 
   const columns = [
-    columnHelper.accessor(nameof("firstName"), {
+    columnHelper.accessor("firstName", {
       header: "First Name",
     }),
-    columnHelper.accessor(nameof("lastName"), {
+    columnHelper.accessor("lastName", {
       header: "Last Name",
     }),
-    columnHelper.accessor(nameof("age"), {
+    columnHelper.accessor("age", {
       header: "Age",
     }),
   ];
